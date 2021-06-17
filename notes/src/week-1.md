@@ -33,7 +33,14 @@
 * $h_\theta (x)=\theta_0+\theta_1x$ is the cost function
   * $\theta_i$ are parameters that correspond to the regression line
     * Choose $\theta_0,\theta_1$ so $h_\theta (x)$ is close to $y$ for examples in training data $(x,y)$
-* Minimizing $\theta_0,\theta_1$ distance to true values which is minimizing $\boxed{J\left(\theta_{0}, \theta_{1}\right)=\frac{1}{2 m} \sum_{i=1}^{m}\left(\hat{y}_{i}-y_{i}\right)^{2}=\frac{1}{2 m} \sum_{i=1}^{m}\left(h_{\theta}\left(x_{i}\right)-y_{i}\right)^{2}}$ or the average of training set residuals
+* Minimizing the average of training set residuals
+
+$\theta_0,\theta_1$ distance to true values which is minimizing 
+
+$$
+\boxed{J\left(\theta_{0}, \theta_{1}\right)=\frac{1}{2 m} \sum_{i=1}^{m}\left(\hat{y}_{i}-y_{i}\right)^{2}=\frac{1}{2 m} \sum_{i=1}^{m}\left(h_{\theta}\left(x_{i}\right)-y_{i}\right)^{2}}
+$$
+
   * $m$ is the training set size
   * Is the squared error cost function - goal is to minimize
   * Halving the mean is for convenience as derivative will cancel it
@@ -99,3 +106,17 @@ $$
 
 # Linear Algebra Review
 
+* Dimension of a matrix is $\text{row}\times\text{col}$ or $\mathbb{R}^{\text{row}\times\text{col}}$
+* $A_{ij}$ is $i$th row and $j$th column entry of matrix $A$
+* A vector is a $n\times 1$ matrix of dimension $n$
+  * $y_i$ is the $i$th element in the vector $\vec{y}$
+  * Can be 0 or 1-indexed
+* Given $h_\theta(x)=\theta_0+\theta_1x$, can use $\vec{p}=D\times \vec{\theta}$ where $\vec{p}$ is the predicted regression values vector of dimension 4, $D$ is $n\times 2$ matrix with column 1 = $\vec{1}$, and $\vec{\theta}$ is the parameter matrix of dimension 2
+  * More computationally efficient
+* If $C=A\times B$, the $i$th column of $C$ is $A\times \vec B_i$ where $B_i$ is the $i$th column of $B$
+* If applying multiple hypotheses to a data set, use a $2\times n$ matrix where there are $n$ hypotheses and 2 parameters
+* No commutative matrix/vector multiplication but associativity works
+* Identity matrix: $A\times I=I\times A=A$ but $AB\neq BA$ if $B\neq A\neq I$
+* If $A$ is $m\times m$ and has inverse $A^{-1}$, then $AA^{-1}=A^{-1}A=I$
+* A transpose makes the the $i$th row the $i$th column and is reversible
+  * If $A$ is an $m\times n$ matrix and $B=A^T$, then $B$ is an $n\times m$ matrix and $B_{ij}=A_{ji}$
