@@ -9,6 +9,9 @@
   * $0\leq h_\theta(x)\leq 1$
   * Binary classification
 
+* bruh
+  * 
+
 # Hypothesis Representation
 
 * Need $0\leq h_\theta(x)\leq 1$
