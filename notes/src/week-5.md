@@ -42,6 +42,7 @@ $$
 ## Algorithm
 
 For $i=1\to m$ $\left(\leftarrow (x^{(i)},y^{(i)})\right)$:
+
 * Set $a^{(1)}=x^{(i)}$
 * Forward propagation to compute $a^{(l)}$ for $l\in \text{range}(2,3,\ldots,L)$
 * Use $y^{(i)}$ to compute $\delta^{(L)}-y^{(i)}$
