@@ -1,3 +1,8 @@
+---
+title: "Machine Learning: Introduction"
+author: "Sidharth Baskaran"
+date: "June 2021"
+---
 # Introduction
 
 * Supervised learning - right answers are given

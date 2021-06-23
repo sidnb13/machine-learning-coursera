@@ -1,3 +1,9 @@
+---
+title: "Machine Learning: Representing Neural Networks"
+author: "Sidharth Baskaran"
+date: "June 2021"
+---
+
 # Non-linear hypotheses
 
 * Computer vision - section matrix of pixel intensities correspond to an image

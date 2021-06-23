@@ -1,3 +1,9 @@
+---
+title: "Machine Learning: Logistic Regression"
+author: "Sidharth Baskaran"
+date: "June 2021"
+---
+
 # Classification
 
 * Is a discrete categorization of an output variable, e.g. $y\in \{0,1\}$
