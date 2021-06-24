@@ -163,11 +163,11 @@ Theta2 = rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
   * Default - 1 hidden layer and if $\geq 1$, equal number of units in each layer
     * More is better but balance with cost function
 * Training neural network steps
-  * Randomly initialize weights 
+  * Randomly initialize weights
   * Implement forward propagation to get $h_\Theta(x^{(i)})$ for any $x^{(i)}$
   * Compute $J(\Theta)$
   * Implement backprop to get partial derivatives of $J(\Theta)$
-  * Use gradient checking to compare backpropagation partial with numerical estimate of $\nabla J(\Theta)$, then disable check 
+  * Use gradient checking to compare backpropagation partial with numerical estimate of $\nabla J(\Theta)$, then disable check
   * Use optimization routine to minimize $J(\Theta)$
 
 ``` matlab
