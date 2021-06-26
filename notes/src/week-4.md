@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning: Representing Neural Networks"
+title: "Representing Neural Networks"
 author: "Sidharth Baskaran"
 date: "June 2021"
 ---

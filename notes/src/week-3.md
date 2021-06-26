@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning: Logistic Regression"
+title: "Logistic Regression"
 author: "Sidharth Baskaran"
 date: "June 2021"
 ---

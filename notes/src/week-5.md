@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning: Learning with Neural Networks"
+title: "Learning with Neural Networks"
 author: "Sidharth Baskaran"
 date: "June 2021"
 ---

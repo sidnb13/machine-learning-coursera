@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning: Introduction"
+title: "ntroduction to Machine Learning"
 author: "Sidharth Baskaran"
 date: "June 2021"
 ---
