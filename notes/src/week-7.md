@@ -65,3 +65,37 @@ $$
     * Large $C$ $\rightarrow$ low bias, high variance (small $\lambda$)
     * Small $C$ $\rightarrow$ high bias, low variance (large $\lambda$)
     * $\sigma^2$ $\rightarrow$ a large value means smoother variance of features $f_i$, so high bias, low variance
+
+# Using SVM
+
+* Use an SVM software package (e.g. `liblinear`, `libsvm`) in order to solve for $\theta$
+* Specify
+  * Choice of $C$
+  * Choice of kernel
+* No kernel $\rightarrow$ linear kernel
+  * Would just use $\theta^Tx\geq 0 \implies y=1$
+* If using Gaussian kernel, must choose $\sigma^2$
+* Implementing kernel function
+  * Perform feature scaling prior to kernel
+  * Similarity function needs to satisfy Mercer's theorem $\rightarrow$ cannot diverge
+
+``` matlab
+function f = kernel(x1, x2)
+  f = e^-(norm(x1-x2)^2)/(2*sigma^2);
+end
+```
+
+* Kernel options
+  * Polynomial $\rightarrow$ $k(x,\ell)=(x^T\ell + c)^d$
+    * Worse performance than Gaussian
+  * String, chi-square, histogram intersection
+* Multi-class classification SVM where $y\in S=\{1,2,3,\ldots,K\}$
+  * Most have built-in handling, else use one-vs-all method
+  * One-vs-all $\rightarrow$ Train $K$ SVMs, 1 to distinguish $y=i$ from rest for $i\in S$, then get $\theta^{(1)},\ldots,\theta^{(K)}$, then pick class $i$ with largest $(\theta^{(i)})^Tx$
+* Logistic regression vs. SVMs
+  * Let $n$ = number of features $x\in \mathbb{R}^{n+1}$, $m$ = number of training examples
+  * If $n\geq m$, use logistic regression of SVM with linear kernel
+  * If $n$ is small, $m$ is intermediate, use SVM with Gaussian kernel
+  * If $n$ is small, $m$ is large, create/add more features and use logistic regression/SVM without kernel
+  * Convex optimization problem, no divergence issue
+  * Neural network works well for all, but slower to train
