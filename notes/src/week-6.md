@@ -112,3 +112,50 @@ $$
 * Small neural network $\rightarrow$ prone to underfitting due to less parameters, computationally cheaper
 * Large neural network $\rightarrow$ prone to overfitting and computationally expensive
   * Can address with $\lambda$
+
+# Machine Learning System Design
+
+* Supervised learning $\rightarrow$ $x$ = features of email, $y\in\{0,1\}$, can choose 100 words indicative of spam/not for features
+* Can encode an email into a feature vector
+  * In practice $\rightarrow$ take most frequently occurring $n$ words in training set
+* Could develop features to reduce errors, e.g. misspelling detection
+  * Equal consideration of all options $\rightarrow$ cannot tell which will work best
+
+# Error Analysis
+
+* Start with **simple** algorithm to test on CV data
+* Plot learning curves to decide if more data, features, etc.
+* Error analysis $\rightarrow$ manual examination of examples where errors occurred
+  * Look for systematic error trend
+  * Use evidence to guide decision-making not guesswork
+* Numerical evaluation
+  * Treating stem of word = to variants of word
+  * Can use stemming software
+  * Naturally $\rightarrow$ CV error $J_\mathrm{CV}(\theta)$ of algorithm with/without stemming and choose best options
+    * Do not $J_\mathrm{train}(\theta)$ to allow for generalization
+
+# Error metrics for skewed classes
+
+* Precision/recall
+  * **Precision** $\rightarrow$ Of all predictions $y=1$, fraction that actually correspond to $y=1$
+    * $\text{Precision}=\frac{\text{True pos.}}{\text{Predicted pos.}}=\frac{\text{True pos.}}{\text{True pos. + False pos.}}$
+  * **Recall** $\rightarrow$ Of all actual cases $y=1$, what fraction was correctly detected by algorithm
+    * $\text{Recall}=\frac{\text{True pos.}}{\text{Actual pos.}}=\frac{\text{True pos.}}{\text{True pos. + False neg.}}$
+* Tradeoff of precision/recall
+  * If trying to have high confidence $\rightarrow$ high precision, low recall
+  * If trying to minimize false negatives $\rightarrow$ high recall, low precision
+* In general $\rightarrow$ predict 1 if $h_\theta(x)\geq \text{threshold}$
+* $F_1$ score $\rightarrow$ comparing precision/recall numbers
+  * Can calculate average $\frac{P+R}{2}$ but susceptible to high or low recall/precision weighted
+  * $F_1$ or $F$-score better $\rightarrow$ $2\frac{PR}{P+R}$
+    * Gives more weight to $\mathrm{min}(P,R)$
+
+# Data for Machine Learning
+
+* Large data rationale
+  * Assume feature $x\in \mathbb{R}^{n+1}$ has enough informaiton to predict $y$ accurately
+  * Can ask if given input $x$, can human expert confidently predict $y$
+  * A learning algorithm with many parameters or NN with many hidden layers
+    * $J_\mathrm{train}(\theta)$ very small
+  * Very large training set $\rightarrow$ unlikely to overfit
+    * $J_\mathrm{train}(\theta) \approx J_\mathrm{test}(\theta)$
