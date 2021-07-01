@@ -1,7 +1,6 @@
 ---
 title: "Logistic Regression"
 author: "Sidharth Baskaran"
-date: "June 2021"
 ---
 
 # Classification
