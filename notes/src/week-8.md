@@ -123,7 +123,7 @@ $$
 $$
 z=\left[\begin{array}{cccc}\mid & \mid & & \mid \\u^{(1)} & u^{(2)} & \ldots & u^{(k)} \\\mid & \mid & & \mid\end{array}\right]^Tx
 =
-\left[\begin{array}{c}-\left(u^{(1)}\right)^{\top}- \\\vdots \\-\left(u^{(k)}\right)^{1}-\end{array}\right]x \in \mathbb{R}^k
+\left[\begin{array}{c}-\left(u^{(1)}\right)^{T}- \\\vdots \\-\left(u^{(k)}\right)^{T}-\end{array}\right]x \in \mathbb{R}^k
 $$
 
 ### Summary
