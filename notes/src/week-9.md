@@ -143,3 +143,69 @@ $$
 \theta_{k}^{(j)}:=\theta_{k}^{(j)}-\alpha\underbrace{\left(\sum_{i: r(i, j)=1}\left(\left(\theta^{(j)}\right)^{T} x^{(i)}-y^{(i, j)}\right) x_{k}^{(i)}+\lambda \theta_{k}^{(j)}\right)}_{\frac{\partial}{\partial \theta_l^{(j)}}J(\theta^{(1)},\ldots,\theta^{(j)})}(\text { for } k \neq 0)
 \end{array}
 $$
+
+# Collaborative Filtering and Algorithm
+
+* Given $x^{(1)},\ldots,x^{(n_m)}$ and movie ratings, can estimate $\theta^{(1)},\ldots,\theta^{(n_u)}$
+
+$$
+\underset{\theta^{(1)},\ldots,\theta^{(n_u)}}{\mathrm{min}} \frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}\left((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\right)^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^n(\theta_k^{(j)})^2
+$$
+
+* Given $\theta^{(1)},\ldots,\theta^{(n_u)}$, can estimate $x^{(1)},\ldots,x^{(n_m)}$
+
+$$
+\underset{x^{(1)},\ldots,x^{(n_m)}}{\mathrm{min}} \frac{1}{2}\sum_{i=1}^{n_m}\sum_{i:r(i,j)=1}\left((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\right)^2+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2
+$$
+
+* Repeating these steps allows for learning features and parameters simultaneously
+
+## Efficient algorithm
+
+* Combined cost function summation iterates over all $(i,j):r(i,j)=1$
+
+$$
+\begin{aligned}
+  J(x^{(1)},\ldots,x^{(n_m)},\theta^{(1)},\ldots,\theta^{(n_u)})&=\frac{1}{2}\sum_{(i,j):r(i,j)=1}\left((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\right)^2\\
+  &+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^n(\theta_k^{(j)})^2\\
+  &+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2\\
+\end{aligned}
+$$
+
+Objective is $\underset{x^{(1)},\ldots,x^{(n_m)},\theta^{(1)},\ldots,\theta^{(n_u)}}{\mathrm{min}}J(x^{(1)},\ldots,x^{(n_m)},\theta^{(1)},\ldots,\theta^{(n_u)})$
+
+* Minimize with respect to $x^{(1)},\ldots,x^{(n_m)}$ and $\theta^{(1)},\ldots,\theta^{(n_u)}$ simultaneously
+* Convention gets rid of $x_0=1$, therefore no $\theta_0$, so $x,\theta\in \mathbb{R}^n$
+
+### Algorithm
+
+1. Initialize $x^{(1)},\ldots,x^{(n_m)},\theta^{(1)},\ldots,\theta^{(n_u)}$ to small, random values
+2. Minimize $J(x^{(1)},\ldots,x^{(n_m)},\theta^{(1)},\ldots,\theta^{(n_u)})$ using gradient descent or advanced optimization algorithm
+
+For example, for every $j=1,\ldots,n_u,i=1,\ldots,n_m$
+$$
+\begin{aligned}
+  x_k^{(i)}&:=x_k^{(i)}-\alpha\left(\sum_{j:r(i,j)=1}\left((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\right)\theta_k^{(j)}+\lambda x_k^{(i)}\right)\\
+  \theta_k^{(j)}&:=\theta_k^{(j)}-\alpha\left(\sum_{i:r(i,j)=1}\left((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\right)x_k^{(i)}+\lambda \theta_k^{(j)}\right)
+\end{aligned}
+$$
+
+3. For user with parameters $\theta$ and movie with learned features $x$, predict star rating of $\theta^Tx$
+
+# Low Rank Matrix Factorization
+
+* Let matrix $Y$ be all given ratings including ?s
+* Let predicted rating matrix be such that element $(i,j)$ is $(\theta^{(j)})^Tx^{(i)}$
+* Define $X=\begin{bmatrix}-(x^{(1)})^T-\\\vdots\\-(x^{(n_m)})^T-\end{bmatrix}$ as the feature matrix
+* Define $\Theta=\begin{bmatrix}-(\theta^{(1)})^T-\\\vdots\\-(\theta^{(n_u)})^T-\end{bmatrix}$
+* To calculate prediction matrix, use $X\Theta^T$
+* Algorithm called low rank matrix factorization
+* Finding related movies from example
+  * For each product $i$, we learn feature vector $x^{(i)}\in\mathbb{R}^n$
+  * To find movies $j$ related to movie $i$, want to find the smallest $||x^{(i)}-x^{(j)}||$
+
+# Mean normalization
+
+* Average each row of $Y$ to generate $\mu\in\mathbb{R}^{n_m}$
+* Subtract each entry in $\mu$ from each value in corresponding row of $Y$, then use this to learn $\theta^{(i)},x^{(i)}$
+* When predicting for user $j$ movie $i$ $\rightarrow$ $(\theta^{(J)})^Tx^{(i)}+\mu_i$
