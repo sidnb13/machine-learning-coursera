@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     def convert_pdf(md_file):
         fileName = str(md_file).replace('.md','')
-        os.system(f'pandoc ./src/{md_file} --pdf-engine=xelatex -o ./pdf/{fileName}.pdf -V geometry:margin=1in')
+        os.system(f'pandoc ./src/{md_file} --pdf-engine=pdflatex -o ./pdf/{fileName}.pdf -V geometry:margin=1in')
 
     if len(sys.argv) > 1:
         pageRanges = sys.argv[1].split(',')

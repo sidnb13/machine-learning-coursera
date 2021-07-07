@@ -44,7 +44,7 @@ date: 'June 2021'
 * Stochastic GD
   * During learning, compute $\mathrm{cost}(\theta,(x^{(i)},y^{(i)}))$ prior to updating $\theta$ using $x^{(i)},y^{(i)}$
   * Can plot cost averaged over last 1000 iterations every 1000 iterations or so to adjust $\alpha$ if necessary
-  * Can slowly decrease $\alpha$ over time $\rightarrow$ $a:=\frac{\verb|const1|}{\verb|iterNum + const2|}$ in order for $\theta$ to converge
+  * Can slowly decrease $\alpha$ over time $\rightarrow$ $a:=\frac{\text{const1}}{\text{iterNum + const2}}$ in order for $\theta$ to converge
 
 # Online learning
 
