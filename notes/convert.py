@@ -1,11 +1,11 @@
 #!/usr/local/bin/python3
 
-import os, sys
+import os, sys, re
 from colorama import Fore
 
 if __name__ == "__main__":
-    files = [str(file) for file in os.listdir('./src/')]
-    files.sort()
+    files = [{'name': str(file), 'num': int(re.sub('\D+','',str(file)))} for file in os.listdir('./src/')]
+    files = sorted(files, key=lambda i: i['num'])
 
     def convert_pdf(md_file):
         fileName = str(md_file).replace('.md','')
@@ -28,6 +28,8 @@ if __name__ == "__main__":
                 print(Fore.RED + 'Enter valid page range')
                 exit(1)
 
-            print(f'[{pages.index(i) + 1} of {len(pages)}] Converting {files[i]}')
-            convert_pdf(files[i])
+            fileName = files[i]['name']
+
+            print(f'[{pages.index(i) + 1} of {len(pages)}] Converting {fileName}')
+            convert_pdf(fileName)
             print('Done')
