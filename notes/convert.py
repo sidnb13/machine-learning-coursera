@@ -4,14 +4,16 @@ import os, sys, re
 from colorama import Fore
 
 if __name__ == "__main__":
-    files = [{'name': str(file), 'num': int(re.sub('\D+','',str(file)))} for file in os.listdir('./src/')]
+    folderSrc = sys.argv[2]
+    folderPdf = sys.argv[3]
+    files = [{'name': str(file), 'num': int(re.sub('\D+','',str(file)))} for file in os.listdir(f'./{folderSrc}/')]
     files = sorted(files, key=lambda i: i['num'])
 
     def convert_pdf(md_file):
         fileName = str(md_file).replace('.md','')
-        os.system(f'pandoc ./src/{md_file} --pdf-engine=pdflatex -o ./pdf/{fileName}.pdf -V geometry:margin=1in')
+        os.system(f'pandoc ./{folderSrc}/{md_file} --pdf-engine=pdflatex -o ./{folderPdf}/{fileName}.pdf -V geometry:margin=1in')
 
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         pageRanges = sys.argv[1].split(',')
     else:
         pageRanges = [f'1-{len(files)}']
